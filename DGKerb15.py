@@ -29,12 +29,16 @@ import matplotlib.pyplot as plt
 # Import time to determinate the time the algorithm use to solve the problem
 import time
 
+import dimod
+from dwave.system import LeapHybridBQMSampler
+
 # Set the solver we're going to use
 from dwave.system.samplers import DWaveSampler
 from hybrid.reference.kerberos import KerberosSampler
 from dwave.system.composites import EmbeddingComposite
 
-sampler = KerberosSampler()
+sampler = LeapHybridBQMSampler(solver={'category': 'hybrid'})
+#sampler = KerberosSampler()
 #sampler = EmbeddingComposite(DWaveSampler())
 
 # Create empty graph
@@ -47,7 +51,8 @@ start_time = time.time()
 
 # Find the minimum vertex cover, S
 #S = dnx.min_vertex_cover(G, sampler=sampler, lagrange=5, num_reads=10, label='MVC-15')
-S = dnx.min_vertex_cover(G, sampler=sampler, qpu_reads=10)
+#S = dnx.min_vertex_cover(G, sampler=sampler, qpu_reads=10)
+S = dnx.min_vertex_cover(G, sampler=sampler)
 print("--- %s seconds ---" % (time.time() - start_time))
 
 # Print the solution for the user
