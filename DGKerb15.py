@@ -29,17 +29,17 @@ import matplotlib.pyplot as plt
 # Import time to determinate the time the algorithm use to solve the problem
 import time
 
-import dimod
-from dwave.system import LeapHybridBQMSampler
-
 # Set the solver we're going to use
+from dwave.system import LeapHybridBQMSampler
+from dwave.system import LeapHybridSampler
 from dwave.system.samplers import DWaveSampler
 from hybrid.reference.kerberos import KerberosSampler
 from dwave.system.composites import EmbeddingComposite
 
-sampler = LeapHybridBQMSampler(solver={'category': 'hybrid'})
+#sampler = LeapHybridBQMSampler(solver={'category': 'hybrid'})
+#sampler = LeapHybridSampler()
 #sampler = KerberosSampler()
-#sampler = EmbeddingComposite(DWaveSampler())
+sampler = EmbeddingComposite(DWaveSampler())
 
 # Create empty graph
 G = nx.Graph()
